@@ -1,27 +1,72 @@
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { Button } from "@/components/ui/button"
+import { ChatInitiator } from "@/components/chat/ChatInitiator"
+import { ChatCreationForm, ChatCreationData } from "@/components/chat/ChatCreationForm"
+import { ChatRoom } from "@/components/chat/ChatRoom"
+import { useToast } from "@/components/ui/use-toast"
+import { AnimatePresence } from "framer-motion"
+
+interface Message {
+  id: string
+  content: string
+  sender: string
+  timestamp: Date
+  type: "text" | "image" | "audio-transcript"
+}
 
 const Chat = () => {
-  const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate()
+  const { toast } = useToast()
+  const [showCreationForm, setShowCreationForm] = useState(false)
+  const [currentChat, setCurrentChat] = useState<ChatCreationData | null>(null)
+  const [messages, setMessages] = useState<Message[]>([])
 
-  // Simulate loading
-  setTimeout(() => setIsLoading(false), 1500);
+  const handleInitiateChat = () => {
+    setShowCreationForm(true)
+  }
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-glow">
-          <div className="w-16 h-16 border-4 border-ryuking-red rounded-full border-t-transparent animate-spin"></div>
-        </div>
-      </div>
-    );
+  const handleCreateChat = (data: ChatCreationData) => {
+    // TODO: Integrate with backend to create chat room
+    setCurrentChat(data)
+    setShowCreationForm(false)
+    toast({
+      title: "Chat Created",
+      description: `Chat room "${data.name}" has been created successfully.`,
+    })
+  }
+
+  const handleSendMessage = (content: string) => {
+    // TODO: Integrate with backend to send message
+    const newMessage: Message = {
+      id: Date.now().toString(),
+      content,
+      sender: "currentUser",
+      timestamp: new Date(),
+      type: "text",
+    }
+    setMessages((prev) => [...prev, newMessage])
+  }
+
+  const handleUploadImage = async (file: File) => {
+    // TODO: Integrate with backend to upload and process image
+    toast({
+      title: "Image Upload",
+      description: "Image upload functionality will be implemented with backend integration.",
+    })
+  }
+
+  const handleUploadAudio = async (file: File) => {
+    // TODO: Integrate with backend for audio-to-text transcription
+    toast({
+      title: "Audio Upload",
+      description: "Audio transcription will be implemented with backend integration.",
+    })
   }
 
   return (
-    <div className="min-h-screen p-4">
+    <div className="min-h-screen p-4 bg-ryuking-dark">
       <div className="max-w-7xl mx-auto">
         <Button
           variant="ghost"
@@ -30,15 +75,33 @@ const Chat = () => {
         >
           ← Back to Home
         </Button>
-        <div className="bg-ryuking-gray rounded-lg p-6 backdrop-blur-lg border border-white/10">
-          <h1 className="text-2xl font-bold mb-4">Chat Interface Coming Soon</h1>
-          <p className="text-ryuking-muted">
-            The chat functionality is under development. Check back soon for updates!
-          </p>
-        </div>
+
+        {!currentChat && !showCreationForm && (
+          <ChatInitiator onInitiate={handleInitiateChat} />
+        )}
+
+        <AnimatePresence>
+          {showCreationForm && (
+            <ChatCreationForm
+              onClose={() => setShowCreationForm(false)}
+              onSubmit={handleCreateChat}
+            />
+          )}
+        </AnimatePresence>
+
+        {currentChat && (
+          <ChatRoom
+            name={currentChat.name}
+            description={currentChat.description}
+            messages={messages}
+            onSendMessage={handleSendMessage}
+            onUploadImage={handleUploadImage}
+            onUploadAudio={handleUploadAudio}
+          />
+        )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Chat;
+export default Chat
