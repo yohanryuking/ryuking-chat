@@ -92,10 +92,3 @@ Este proyecto no especifica una licencia en el repositorio. Se recomienda añadi
 Contacto
 --------
 - GitHub: https://github.com/yohanryuking
-
-Notas
------
-Si quieres, puedo:
-- Añadir badges reales (GitHub Actions, Vercel, npm)
-- Traducir el README al inglés o dejarlo bilingüe
-- Incluir instrucciones específicas del backend o variables de entorno concretas si me das esos detalles
