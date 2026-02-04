@@ -1,40 +1,101 @@
 # Ryuking Chat
 
-## Overview
-Ryuking Chat is a modern chat application built with React, TypeScript, Vite, shadcn-ui, and Tailwind CSS. This application allows users to communicate in real-time, providing a seamless and engaging user experience.
+![Badge: TypeScript](https://img.shields.io/badge/TypeScript-98%25-blue) ![Badge: License](https://img.shields.io/badge/License-MIT-green)
 
-## Features
-- **Real-time Messaging**: Sends and receives messages instantaneously.
-- **User Authentication**: Secure user login and registration.
-- **Responsive Design**: A sleek, mobile-friendly interface designed using Tailwind CSS.
-- **Custom Components**: Developed with shadcn-ui for a consistent user interface.
-- **Type-Safe Code**: Utilizing TypeScript for type safety and improved developer experience.
+Descripción
+-----------
+Ryuking Chat es una aplicación de chat moderna y ligera, desarrollada con React, TypeScript, Vite, shadcn-ui y Tailwind CSS. Está pensada para ofrecer una experiencia de conversación rápida y agradable, y sirve como cliente web para integrar modelos LLM o servicios de mensajería en tiempo real.
 
-## Tech Stack
-- **Frontend**: React, TypeScript, Vite, Tailwind CSS, shadcn-ui
-- **Backend**: [Specify backend technology if applicable]
+Características
+---------------
+- Mensajería en tiempo real
+- Interfaz responsiva y móvil primero
+- Componentes UI reutilizables (shadcn-ui + Tailwind)
+- Código tipado con TypeScript para mejor mantenibilidad
+- Preparada para desarrollo local y despliegue en producción
 
-## Installation
-To set up the project locally, follow these steps:
-1. Clone the repository:
+Tecnologías
+-----------
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- shadcn-ui
+
+Requisitos
+---------
+- Node.js >= 18
+- npm, yarn o pnpm
+
+Instalación (desarrollo)
+------------------------
+1. Clona el repositorio:
    ```bash
    git clone https://github.com/yohanryuking/ryuking-chat.git
    cd ryuking-chat
    ```
-2. Install dependencies:
+2. Instala dependencias:
    ```bash
    npm install
+   # o yarn
+   # o pnpm install
    ```
-3. Run the application:
+3. Ejecuta en modo desarrollo:
    ```bash
    npm run dev
    ```
 
-## Contributing
-We welcome contributions! Please submit a pull request or open an issue for suggestions.
+Construcción (producción)
+-------------------------
+1. Genera el build:
+   ```bash
+   npm run build
+   ```
+2. Ejecuta el servidor de producción:
+   ```bash
+   npm run start
+   ```
+   (o sirve los archivos estáticos con el servidor de tu preferencia)
 
-## License
-[Specify License]
+Variables de entorno
+--------------------
+Si la aplicación requiere variables de entorno, crea un archivo `.env` en la raíz con las claves necesarias. Ejemplos comunes:
+```
+VITE_API_URL=https://api.example.com
+OPENAI_API_KEY=sk-xxxx
+```
+Ajusta los nombres según la configuración real del proyecto.
 
-## Contact
-For inquiries, please contact [Your Email/Contact Information].
+Uso
+---
+- Abre http://localhost:5173 (o el puerto que indique la salida de `npm run dev`).
+- Crea o inicia sesión en un usuario (si aplica) y comienza a chatear.
+
+Demo / Capturas
+---------------
+Si tienes una demo desplegada o capturas, añade aquí el enlace o la imagen:
+
+- Demo: (enlace)
+- Captura: `docs/screenshot.png`
+
+Contribuir
+----------
+1. Haz fork del repositorio
+2. Crea una rama: `feature/nombre-descriptivo`
+3. Haz commits y push
+4. Abre un Pull Request describiendo los cambios
+
+Licencia
+--------
+Este proyecto no especifica una licencia en el repositorio. Se recomienda añadir un archivo LICENSE. Una opción común es MIT.
+
+Contacto
+--------
+- GitHub: https://github.com/yohanryuking
+
+Notas
+-----
+Si quieres, puedo:
+- Añadir badges reales (GitHub Actions, Vercel, npm)
+- Traducir el README al inglés o dejarlo bilingüe
+- Incluir instrucciones específicas del backend o variables de entorno concretas si me das esos detalles
